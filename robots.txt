@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
+Disallow: /dashboard.html
 
-# Sitemaps
 Sitemap: https://hola-escapaditas.github.io/sitemap.xml
