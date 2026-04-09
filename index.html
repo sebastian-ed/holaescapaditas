@@ -3,237 +3,119 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- SEO -->
   <title>Hola Escapaditas | Paquetes de Viaje desde Argentina</title>
-  <meta name="description" content="Hola Escapaditas: paquetes de viaje a medida para que explores el mundo sin complicaciones. Nacionales e internacionales. Consultanos por WhatsApp."/>
-  <meta name="keywords" content="paquetes de viaje Argentina, agencia de viajes, viajes baratos, escapadas, turismo, vuelos y hoteles, hola escapaditas"/>
-  <meta name="author" content="Hola Escapaditas"/>
+  <meta name="description" content="Paquetes de viaje a medida con gestión desde Supabase. Consultanos por WhatsApp."/>
   <meta name="robots" content="index, follow"/>
-  <link rel="canonical" href="https://hola-escapaditas.github.io/"/>
-
-  <!-- OG -->
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://hola-escapaditas.github.io/"/>
-  <meta property="og:title" content="Hola Escapaditas | Paquetes de Viaje desde Argentina"/>
-  <meta property="og:description" content="Paquetes a medida, precios accesibles y atención personalizada. ¡Tu próxima escapada empieza acá!"/>
-  <meta property="og:image" content="https://hola-escapaditas.github.io/img/og-image.jpg"/>
-  <meta property="og:locale" content="es_AR"/>
-
-  <!-- Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "TravelAgency",
-    "name": "Hola Escapaditas",
-    "url": "https://hola-escapaditas.github.io/",
-    "description": "Agencia de viajes especializada en paquetes a medida para viajeros argentinos.",
-    "sameAs": ["https://www.instagram.com/hola.escapaditas/"],
-    "contactPoint": { "@type": "ContactPoint", "contactType": "customer support", "availableLanguage": "Spanish" }
-  }
-  </script>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,700;1,700&display=swap" rel="stylesheet"/>
-
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml"/>
 </head>
 <body>
-
-<!-- ====== NAVBAR ====== -->
 <header class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="logo">
-      <div class="logo-mark">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg>
-      </div>
+      <div class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg></div>
       <span>hola <strong>escapaditas</strong></span>
     </a>
     <nav class="nav-links" id="navLinks">
       <a href="#paquetes">Paquetes</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#contacto">Contacto</a>
-      <a href="admin.html">Admin</a>
     </nav>
-    <a href="admin.html" class="btn-admin-nav">Admin</a>
-    <a id="navWaBtn" href="#" target="_blank" rel="noopener" class="btn-wa-nav">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      WhatsApp
-    </a>
-    <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <a id="navWaBtn" href="#" target="_blank" rel="noopener" class="btn-wa-nav">WhatsApp</a>
+    <a href="admin.html" class="admin-link">Admin</a>
+    <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<!-- ====== HERO ====== -->
 <section class="hero" id="inicio">
-  <div class="hero-shapes">
-    <div class="shape s1"></div>
-    <div class="shape s2"></div>
-    <div class="shape s3"></div>
-  </div>
+  <div class="hero-shapes"><div class="shape s1"></div><div class="shape s2"></div><div class="shape s3"></div></div>
   <div class="hero-content">
     <div class="hero-badge">✈️ Agencia de viajes</div>
-    <h1 class="hero-title">
-      Tu próxima<br/>
-      <em>escapada</em><br/>
-      empieza acá 🌍
-    </h1>
-    <p class="hero-sub">Paquetes a medida, precios accesibles y atención real. Sin vueltas, sin letra chica.</p>
+    <h1 class="hero-title">Tu próxima<br><em>escapada</em><br>empieza acá 🌍</h1>
+    <p class="hero-sub">Paquetes a medida, precios accesibles y atención real. Ahora con persistencia real en Supabase: no más cambios fantasmas.</p>
     <div class="hero-ctas">
       <a href="#paquetes" class="btn-primary">Ver paquetes</a>
       <a id="heroCta" href="#" target="_blank" rel="noopener" class="btn-ghost">Consultar gratis →</a>
     </div>
-    <div class="hero-trust">
-      <span>⭐ Atención personalizada</span>
-      <span>🔒 Pago seguro</span>
-      <span>💬 Respuesta rápida</span>
-    </div>
+    <div class="hero-trust"><span>⭐ Atención personalizada</span><span>🔒 Datos persistentes</span><span>💬 Respuesta rápida</span></div>
   </div>
   <div class="hero-visual">
-    <div class="hero-card-float hc1">
-      <span>🏖️</span>
-      <div><strong>Cancún</strong><small>Todo incluido</small></div>
-    </div>
-    <div class="hero-card-float hc2">
-      <span>🏔️</span>
-      <div><strong>Bariloche</strong><small>5 noches</small></div>
-    </div>
-    <div class="hero-card-float hc3">
-      <span>🗼</span>
-      <div><strong>Europa</strong><small>12 días</small></div>
-    </div>
+    <div class="hero-card-float hc1"><span>🏖️</span><div><strong>Cancún</strong><small>Todo incluido</small></div></div>
+    <div class="hero-card-float hc2"><span>🏔️</span><div><strong>Bariloche</strong><small>5 noches</small></div></div>
+    <div class="hero-card-float hc3"><span>🗼</span><div><strong>Europa</strong><small>12 días</small></div></div>
   </div>
 </section>
 
-<!-- ====== FEATURES ====== -->
 <section class="features">
   <div class="features-inner">
-    <div class="feat"><div class="feat-ico">🗺️</div><div><strong>30+ destinos</strong><p>Nacional e internacional</p></div></div>
-    <div class="feat"><div class="feat-ico">💬</div><div><strong>WhatsApp directo</strong><p>Respuesta en minutos</p></div></div>
-    <div class="feat"><div class="feat-ico">🎒</div><div><strong>Todo armado</strong><p>Vuelos, hotel y más</p></div></div>
-    <div class="feat"><div class="feat-ico">💳</div><div><strong>Cuotas sin interés</strong><p>Viajá tranquilo/a</p></div></div>
+    <div class="feat"><div class="feat-ico">🗺️</div><div><strong>Paquetes reales</strong><p>Persisten en base de datos</p></div></div>
+    <div class="feat"><div class="feat-ico">⚙️</div><div><strong>Panel admin</strong><p>Alta, edición y ocultado</p></div></div>
+    <div class="feat"><div class="feat-ico">🔒</div><div><strong>Login Supabase</strong><p>Sin contraseñas en GitHub</p></div></div>
+    <div class="feat"><div class="feat-ico">💬</div><div><strong>WhatsApp directo</strong><p>Configurado desde panel</p></div></div>
   </div>
 </section>
 
-<!-- ====== PAQUETES ====== -->
 <section class="paquetes-section" id="paquetes">
   <div class="section-head">
     <p class="tag-label">Nuestros paquetes</p>
     <h2>Destinos que <em>enamoran</em> 💫</h2>
-    <p class="section-desc">Cada paquete fue armado con cariño. Solo tenés que elegir y nosotros nos encargamos del resto.</p>
+    <p class="section-desc">Cada paquete sale desde Supabase. Lo que editás en el panel, el público lo ve de verdad.</p>
   </div>
   <div class="filtros-wrap" id="filtros"></div>
   <div class="paquetes-grid" id="paquetesGrid"></div>
-  <p class="empty-msg hidden" id="paquetesEmpty">No hay paquetes en esta categoría todavía. 🌍</p>
+  <p class="empty-msg hidden" id="paquetesEmpty">No hay paquetes en esta categoría todavía.</p>
 </section>
 
-<!-- ====== NOSOTROS ====== -->
 <section class="nosotros" id="nosotros">
   <div class="nosotros-inner">
     <div class="nosotros-text">
       <p class="tag-label">¿Quiénes somos?</p>
-      <h2>Viajeros que<br/><em>ayudan</em> a viajar</h2>
-      <p>En <strong>Hola Escapaditas</strong> creemos que viajar tiene que ser fácil, accesible y emocionante. Nos encargamos de cada detalle para que vos solo pienses en disfrutar.</p>
-      <p>Atención por WhatsApp, trato humano y acompañamiento desde que consultás hasta que volvés con la valija llena de recuerdos.</p>
-      <a href="https://www.instagram.com/hola.escapaditas/" target="_blank" rel="noopener" class="btn-ig">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        Seguinos en Instagram
-      </a>
+      <h2>Viajeros que<br><em>ayudan</em> a viajar</h2>
+      <p>En <strong>Hola Escapaditas</strong> creemos que viajar tiene que ser fácil, accesible y emocionante. El sitio ahora está preparado para operar como vitrina real, no como demo de navegador.</p>
+      <p>Atención por WhatsApp, trato humano y un panel que no te sabotea cada vez que cerrás Chrome.</p>
+      <a href="https://www.instagram.com/hola.escapaditas/" target="_blank" rel="noopener" class="btn-ig">Seguinos en Instagram</a>
     </div>
     <div class="stats-grid">
       <div class="stat-card"><span class="stat-n">100+</span><span class="stat-l">Viajeros felices</span></div>
       <div class="stat-card"><span class="stat-n">30+</span><span class="stat-l">Destinos activos</span></div>
-      <div class="stat-card accent"><span class="stat-n">5★</span><span class="stat-l">Satisfacción</span></div>
-      <div class="stat-card"><span class="stat-n">24h</span><span class="stat-l">Soporte</span></div>
+      <div class="stat-card accent"><span class="stat-n">24/7</span><span class="stat-l">Panel persistente</span></div>
+      <div class="stat-card"><span class="stat-n">1</span><span class="stat-l">Base de verdad</span></div>
     </div>
   </div>
 </section>
 
-<!-- ====== CONTACTO ====== -->
 <section class="contacto" id="contacto">
   <div class="section-head light">
     <p class="tag-label">Hablemos</p>
     <h2>¿Lista/o para tu <em>escapada?</em> 🙌</h2>
-    <p class="section-desc">Escribinos y en minutos te respondemos con opciones pensadas para vos.</p>
+    <p class="section-desc">Escribinos y te respondemos con opciones pensadas para vos.</p>
   </div>
   <div class="contacto-grid">
-    <a id="ctaWa" href="#" target="_blank" rel="noopener" class="cta-card wa">
-      <div class="cta-ico">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      </div>
-      <h3>WhatsApp</h3>
-      <p>Escribinos directo y respondemos enseguida</p>
-      <span class="cta-link">Abrir chat →</span>
-    </a>
-    <a id="ctaMail" href="#" class="cta-card mail">
-      <div class="cta-ico">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      </div>
-      <h3>Email</h3>
-      <p id="emailDisplay">cargando...</p>
-      <span class="cta-link">Escribir mail →</span>
-    </a>
-    <a href="https://www.instagram.com/hola.escapaditas/" target="_blank" rel="noopener" class="cta-card ig">
-      <div class="cta-ico">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </div>
-      <h3>Instagram</h3>
-      <p>@hola.escapaditas</p>
-      <span class="cta-link">Ver perfil →</span>
-    </a>
-    <div class="cta-card phone">
-      <div class="cta-ico">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      </div>
-      <h3>Teléfono</h3>
-      <p id="telefonoDisplay">cargando...</p>
-      <span class="cta-link">Llamar</span>
-    </div>
+    <a id="ctaWa" href="#" target="_blank" rel="noopener" class="cta-card wa"><div class="cta-ico">💬</div><h3>WhatsApp</h3><p>Escribinos directo y respondemos enseguida</p><span class="cta-link">Abrir chat →</span></a>
+    <a id="ctaMail" href="#" class="cta-card mail"><div class="cta-ico">✉️</div><h3>Email</h3><p id="emailDisplay">cargando...</p><span class="cta-link">Escribir mail →</span></a>
+    <a href="https://www.instagram.com/hola.escapaditas/" target="_blank" rel="noopener" class="cta-card ig"><div class="cta-ico">📸</div><h3>Instagram</h3><p>@hola.escapaditas</p><span class="cta-link">Ver perfil →</span></a>
+    <div class="cta-card phone"><div class="cta-ico">📞</div><h3>Teléfono</h3><p id="telefonoDisplay">cargando...</p><span class="cta-link">Llamar</span></div>
   </div>
 </section>
 
-<!-- ====== FOOTER ====== -->
 <footer class="footer">
   <div class="footer-inner">
-    <a href="index.html" class="logo footer-logo">
-      <div class="logo-mark">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg>
-      </div>
-      <span>hola <strong>escapaditas</strong></span>
-    </a>
-    <div class="footer-nav">
-      <a href="#paquetes">Paquetes</a>
-      <a href="#nosotros">Nosotros</a>
-      <a href="#contacto">Contacto</a>
-      <a href="admin.html">Admin</a>
-      <a href="https://www.instagram.com/hola.escapaditas/" target="_blank">Instagram</a>
-      <a href="admin.html">Admin</a>
-    </div>
-    <div class="footer-socials">
-      <a href="https://www.instagram.com/hola.escapaditas/" target="_blank" aria-label="Instagram">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </a>
-      <a id="footerWa" href="#" target="_blank" aria-label="WhatsApp">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      </a>
-    </div>
+    <a href="index.html" class="logo footer-logo"><div class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg></div><span>hola <strong>escapaditas</strong></span></a>
+    <div class="footer-nav"><a href="#paquetes">Paquetes</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a><a href="admin.html">Admin</a></div>
+    <div class="footer-socials"><a href="https://www.instagram.com/hola.escapaditas/" target="_blank">Instagram</a><a id="footerWa" href="#" target="_blank">WhatsApp</a></div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2025 Hola Escapaditas. Hecho con ❤️ para viajeros.</p>
-  </div>
+  <div class="footer-bottom"><p>© 2026 Hola Escapaditas. Sitio conectado a Supabase.</p></div>
 </footer>
 
-<!-- ====== WA FLOAT ====== -->
-<a id="waFloat" href="#" target="_blank" rel="noopener" class="wa-float" aria-label="Consultar por WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
+<a id="waFloat" href="#" target="_blank" rel="noopener" class="wa-float" aria-label="Consultar por WhatsApp">💬</a>
 
-<script src="js/paquetes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/common.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

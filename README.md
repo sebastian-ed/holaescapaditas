@@ -1,110 +1,72 @@
-# ✈️ Hola Escapaditas — Web completa
+# Hola Escapaditas — versión con Supabase
 
-Web profesional, moderna y lista para GitHub Pages.
+Esta versión ya no usa `localStorage` como base real. Ahora:
+- el público lee paquetes desde Supabase
+- el admin entra con email + contraseña de Supabase Auth
+- los cambios quedan persistidos y visibles para todos
+- no hay contraseñas hardcodeadas en GitHub
 
----
+## Estructura
 
-## 📁 Estructura de archivos
+- `index.html` → home pública
+- `paquete.html` → detalle de paquete
+- `admin.html` → login admin
+- `dashboard.html` → panel de gestión
+- `css/style.css` → estilos
+- `js/supabase-config.js` → pegás URL y anon key
+- `js/supabase-client.js` → inicializa Supabase
+- `js/common.js` → utilidades compartidas
+- `js/app.js` → home pública
+- `js/detalle.js` → detalle de paquete
+- `js/auth.js` → login
+- `js/dashboard.js` → CRUD admin
+- `sql/schema.sql` → tablas, RLS y datos iniciales
 
+## Cómo dejarlo operativo
+
+### 1. Crear proyecto en Supabase
+- Creá un proyecto nuevo
+- Andá a **SQL Editor**
+- Ejecutá completo `sql/schema.sql`
+
+### 2. Crear usuario admin
+- En Supabase: **Authentication > Users > Add user**
+- Creá el email y contraseña del admin
+
+### 3. Copiar credenciales públicas
+- En **Project Settings > API**
+- Copiá:
+  - Project URL
+  - anon public key
+
+### 4. Completar configuración del front
+Editá `js/supabase-config.js` y pegá:
+
+```js
+window.SUPABASE_URL = 'https://TU-PROYECTO.supabase.co';
+window.SUPABASE_ANON_KEY = 'TU_ANON_KEY';
 ```
-holaescapaditas/
-├── index.html         ← Página principal
-├── paquete.html       ← Página de detalle de cada paquete
-├── admin.html         ← Login del panel de administración
-├── dashboard.html     ← Panel de gestión (paquetes + config)
-├── robots.txt         ← Para Google (bloquea admin)
-├── sitemap.xml        ← Para Google & IAs
-├── css/
-│   └── style.css      ← Todo el diseño
-├── js/
-│   ├── paquetes.js    ← Datos iniciales y funciones de storage
-│   ├── app.js         ← Lógica del sitio principal
-│   ├── detalle.js     ← Lógica de la página de paquete
-│   ├── auth.js        ← Autenticación segura (SHA-256)
-│   └── dashboard.js   ← Panel de administración
-└── img/
-    └── favicon.svg    ← Ícono del sitio
-```
 
----
+### 5. Subir a GitHub Pages o Netlify
+Subí todo el contenido de esta carpeta.
 
-## 🚀 Cómo subir a GitHub Pages
+## Observaciones importantes
 
-### Paso 1 — Crear repositorio
-1. Entrá a [github.com](https://github.com) → New repository
-2. Nombre: `hola-escapaditas.github.io` (o cualquier nombre)
-3. Público → Create repository
+- Esta versión usa **URLs de imágenes**, no subida de archivos a storage.
+- Es deliberado: te deja operativo más rápido y con menos puntos de falla.
+- Si después querés, se puede migrar a **Supabase Storage** o **Cloudinary**.
 
-### Paso 2 — Subir archivos (sin instalar nada)
-1. Hacé clic en "uploading an existing file"
-2. Arrastrá la carpeta completa (con subcarpetas css/, js/, img/)
-3. Commit changes ✓
+## Qué evita esta arquitectura
 
-### Paso 3 — Activar Pages
-1. Settings → Pages
-2. Source: Deploy from branch → main → / (root)
-3. Guardar. En 1-2 min el sitio está online.
+- que el sitio dependa de un navegador específico
+- que se pierdan paquetes al limpiar caché
+- que GitHub te marque una contraseña en el repo
+- que el panel funcione como maqueta en vez de sistema real
 
----
+## Qué no hace todavía
 
-## 🔒 Seguridad del panel de admin
+- recuperación de contraseña custom
+- roles granulares tipo editor/superadmin
+- subida directa de archivos al storage
 
-La contraseña **nunca se guarda en texto plano**. El sistema usa:
-- **SHA-256** (Web Crypto API nativa del navegador) para hashear la contraseña
-- **Tokens de sesión** aleatorios que expiran en 4 horas
-- **Bloqueo automático** tras 5 intentos fallidos (15 minutos)
-- El archivo `robots.txt` bloquea el indexado de `/admin.html` y `/dashboard.html`
-
-### Primer acceso al admin
-1. Entrá a `admin.html` o usá el botón **Admin** de la web
-2. En el primer ingreso, el sistema te va a pedir **crear tu contraseña**
-3. Esa contraseña queda guardada localmente en ese navegador, hasheada
-
-No hay contraseñas ni hashes hardcodeados en el repositorio.
-
----
-
-## ⚙️ Panel de administración
-
-Accedé desde: `tu-sitio.github.io/admin.html`
-
-### Paquetes
-- Ver, editar y eliminar paquetes existentes
-- Crear nuevos paquetes con todos los campos
-- **Subir múltiples fotos** arrastrando archivos o pegando URLs
-- La primera foto es la portada de la tarjeta
-
-### Fotos
-Tenés 3 formas de agregar fotos:
-1. **Arrastrá** archivos desde tu computadora al área de upload
-2. **Seleccioná** archivos con el selector
-3. **Pegá URLs** de imágenes (Unsplash, Cloudinary, etc.)
-
-Para fotos gratis y de alta calidad: [unsplash.com](https://unsplash.com)
-Para subir tus propias fotos: [cloudinary.com](https://cloudinary.com) (gratis hasta 25GB)
-
-### Configuración
-- Cambiar número de WhatsApp, email, teléfono, Instagram
-- Cambiar la contraseña del panel
-
----
-
-## 🔍 SEO y posicionamiento en Google e IA
-
-El sitio incluye:
-- **Schema.org TravelAgency** → ChatGPT, Perplexity y Google lo usan para entender tu negocio
-- **Open Graph** → Previews correctos en WhatsApp y redes sociales
-- **robots.txt** → Protege el panel admin e invita a Google a indexar el sitio
-- **sitemap.xml** → Le dice a Google qué páginas indexar
-
-### Pasos para posicionarte rápido
-1. **Google Search Console** → [search.google.com/search-console](https://search.google.com/search-console)
-   - Registrá tu URL
-   - Enviá el sitemap (tu-sitio.github.io/sitemap.xml)
-2. **Ponele el link a tu web en la bio de Instagram** @hola.escapaditas
-3. **Actualizá la URL** en index.html, sitemap.xml y robots.txt con tu URL real
-
----
-
-## 💬 Soporte
-¿Preguntas? Consultá con el asistente de IA que generó este sitio.
+Eso se puede agregar después. Primero conviene que el core funcione.
