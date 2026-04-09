@@ -22,28 +22,39 @@
       <span class="brand-name">hola <strong>escapaditas</strong></span>
     </div>
     <div class="login-deco">
-      <div class="deco-card">✈️<span>Paquetes activos</span></div>
-      <div class="deco-card">📸<span>Galería de fotos</span></div>
-      <div class="deco-card">⚙️<span>Configuración</span></div>
+      <div class="deco-card">✈️<span>Panel privado</span></div>
+      <div class="deco-card">📸<span>Gestión de paquetes</span></div>
+      <div class="deco-card">🔐<span>Acceso sin claves hardcodeadas</span></div>
     </div>
   </div>
 
   <div class="login-right">
     <div class="login-box" id="loginBox">
       <div class="login-header">
-        <h1>Panel de gestión</h1>
-        <p>Ingresá tu contraseña para continuar</p>
+        <h1 id="loginTitle">Panel de gestión</h1>
+        <p id="loginSubtitle">Ingresá tu contraseña para continuar</p>
       </div>
 
       <div id="loginAlert" class="login-alert hidden"></div>
 
       <div class="login-form" id="loginForm">
         <div class="input-group">
-          <label for="loginPwd">Contraseña</label>
+          <label for="loginPwd" id="pwdLabel">Contraseña</label>
           <div class="input-wrap">
             <svg class="input-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             <input type="password" id="loginPwd" placeholder="••••••••" autocomplete="current-password"/>
             <button type="button" class="toggle-pwd" id="togglePwd" aria-label="Ver contraseña">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-group hidden" id="confirmGroup">
+          <label for="loginPwdConfirm">Confirmar contraseña</label>
+          <div class="input-wrap">
+            <svg class="input-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="loginPwdConfirm" placeholder="Repetí la contraseña" autocomplete="new-password"/>
+            <button type="button" class="toggle-pwd" id="togglePwdConfirm" aria-label="Ver contraseña">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             </button>
           </div>

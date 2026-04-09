@@ -49,27 +49,18 @@ holaescapaditas/
 
 ## 🔒 Seguridad del panel de admin
 
-La contraseña **NUNCA se guarda en texto plano**. El sistema usa:
+La contraseña **nunca se guarda en texto plano**. El sistema usa:
 - **SHA-256** (Web Crypto API nativa del navegador) para hashear la contraseña
 - **Tokens de sesión** aleatorios que expiran en 4 horas
 - **Bloqueo automático** tras 5 intentos fallidos (15 minutos)
 - El archivo `robots.txt` bloquea el indexado de `/admin.html` y `/dashboard.html`
 
-### Contraseña inicial
-```
-Escapaditas2025!
-```
-**⚠️ Cambiala inmediatamente** desde el panel → Configuración → Cambiar contraseña.
+### Primer acceso al admin
+1. Entrá a `admin.html` o usá el botón **Admin** de la web
+2. En el primer ingreso, el sistema te va a pedir **crear tu contraseña**
+3. Esa contraseña queda guardada localmente en ese navegador, hasheada
 
-### Para cambiar la contraseña inicial en el código (opcional)
-Si querés cambiar el hash del default antes de subir el sitio:
-1. Abrí la consola del navegador (F12)
-2. Ejecutá:
-   ```js
-   crypto.subtle.digest('SHA-256', new TextEncoder().encode('TuNuevaPassword'))
-     .then(b => console.log(Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')))
-   ```
-3. Copiá el resultado y reemplazá `DEFAULT_HASH` en `js/auth.js`
+No hay contraseñas ni hashes hardcodeados en el repositorio.
 
 ---
 

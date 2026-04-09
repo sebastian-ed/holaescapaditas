@@ -240,7 +240,7 @@ async function guardarConfigAdmin() {
 
     // Verificar contraseña actual
     const hashActual = await sha256dash(pwdActual);
-    const storedHash = localStorage.getItem('he_pwd_hash') || 'b7e69b9a93f8f3bde543c4cedb5f8ee9b24ad8c5f6a7f3e0d9c8b1a2e4f6d3c7';
+    const storedHash = localStorage.getItem('he_pwd_hash') || '';
     if (hashActual !== storedHash) { showToast('configToast', '⚠️ La contraseña actual es incorrecta.', 'err'); return; }
 
     // Guardar nueva contraseña hasheada

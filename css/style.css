@@ -141,6 +141,19 @@ input, textarea, select { font-family: inherit; }
 }
 .btn-wa-nav:hover { background: #1db954; transform: translateY(-1px); }
 
+.btn-admin-nav {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .55rem 1rem;
+  border-radius: 50px;
+  border: 2px solid var(--border);
+  background: var(--white);
+  color: var(--text);
+  font-size: .82rem; font-weight: 700;
+  transition: all var(--trans);
+  flex-shrink: 0;
+}
+.btn-admin-nav:hover { border-color: var(--indigo); color: var(--indigo); }
+
 /* ======= NAVBAR ======= */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 900;
@@ -1116,7 +1129,7 @@ input, textarea, select { font-family: inherit; }
 }
 
 @media (max-width: 768px) {
-  .nav-links, .btn-wa-nav { display: none; }
+  .nav-links, .btn-wa-nav, .btn-admin-nav { display: none; }
   .hamburger { display: flex; }
   .nav-links.open {
     display: flex; flex-direction: column;

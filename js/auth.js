@@ -1,18 +1,13 @@
 /**
  * HOLA ESCAPADITAS — auth.js
- * ============================================================
- * Autenticación segura con Web Crypto API (SHA-256)
- * La contraseña NUNCA se almacena en texto plano.
- * Se guarda solo el hash SHA-256. Nunca viaja en claro.
- * ============================================================
+ * Autenticación local del panel.
+ * Sin contraseñas hardcodeadas en el repositorio.
  */
 
 const AUTH_KEY  = 'he_auth_token';
 const HASH_KEY  = 'he_pwd_hash';
-
-// Contraseña inicial hasheada (SHA-256 de "Escapaditas2025!")
-// Para cambiarla: usá el panel de configuración
-const DEFAULT_HASH = 'b7e69b9a93f8f3bde543c4cedb5f8ee9b24ad8c5f6a7f3e0d9c8b1a2e4f6d3c7';
+const MAX_INTENTOS = 5;
+const BLOQUEO_MS   = 15 * 60 * 1000;
 
 async function sha256(text) {
   const msgBuffer = new TextEncoder().encode(text);
@@ -22,20 +17,31 @@ async function sha256(text) {
 }
 
 function getStoredHash() {
-  return localStorage.getItem(HASH_KEY) || DEFAULT_HASH;
+  return localStorage.getItem(HASH_KEY) || '';
+}
+
+function existePassword() {
+  return !!getStoredHash();
+}
+
+async function guardarPasswordNueva(password) {
+  const hash = await sha256(password);
+  localStorage.setItem(HASH_KEY, hash);
+  return hash;
 }
 
 async function verificarPassword(password) {
+  const storedHash = getStoredHash();
+  if (!storedHash) return false;
   const hash = await sha256(password);
-  return hash === getStoredHash();
+  return hash === storedHash;
 }
 
 function crearToken() {
-  // Token de sesión: random string + timestamp
   const arr = new Uint8Array(32);
   crypto.getRandomValues(arr);
   const token = Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('');
-  const expiry = Date.now() + (4 * 60 * 60 * 1000); // 4 horas
+  const expiry = Date.now() + (4 * 60 * 60 * 1000);
   sessionStorage.setItem(AUTH_KEY, JSON.stringify({ token, expiry }));
   return token;
 }
@@ -50,19 +56,15 @@ function estaAutenticado() {
       return false;
     }
     return true;
-  } catch { return false; }
+  } catch {
+    return false;
+  }
 }
 
 function cerrarSesion() {
   sessionStorage.removeItem(AUTH_KEY);
   window.location.href = 'admin.html';
 }
-
-// ============================================================
-// LOGIN PAGE LOGIC
-// ============================================================
-const MAX_INTENTOS = 5;
-const BLOQUEO_MS   = 15 * 60 * 1000; // 15 minutos
 
 function getIntentos() {
   const raw = localStorage.getItem('he_login_attempts');
@@ -92,6 +94,10 @@ function ocultarAlerta() {
 function actualizarContador() {
   const el = document.getElementById('loginAttempts');
   if (!el) return;
+  if (!existePassword()) {
+    el.textContent = 'Primer acceso: definí una contraseña para habilitar el panel.';
+    return;
+  }
   const { count, blockedUntil } = getIntentos();
   if (blockedUntil > Date.now()) {
     const mins = Math.ceil((blockedUntil - Date.now()) / 60000);
@@ -103,87 +109,133 @@ function actualizarContador() {
   }
 }
 
+function configurarVista() {
+  const isSetup = !existePassword();
+  const title = document.getElementById('loginTitle');
+  const subtitle = document.getElementById('loginSubtitle');
+  const pwdLabel = document.getElementById('pwdLabel');
+  const pwdInput = document.getElementById('loginPwd');
+  const confirmGroup = document.getElementById('confirmGroup');
+  const btnText = document.getElementById('btnLoginText');
+
+  if (title) title.textContent = isSetup ? 'Crear acceso admin' : 'Panel de gestión';
+  if (subtitle) subtitle.textContent = isSetup
+    ? 'Definí una contraseña inicial para habilitar el panel privado.'
+    : 'Ingresá tu contraseña para continuar';
+  if (pwdLabel) pwdLabel.textContent = isSetup ? 'Nueva contraseña' : 'Contraseña';
+  if (pwdInput) pwdInput.placeholder = isSetup ? 'Mínimo 8 caracteres' : '••••••••';
+  if (btnText) btnText.textContent = isSetup ? 'Crear acceso' : 'Ingresar al panel';
+  if (confirmGroup) confirmGroup.classList.toggle('hidden', !isSetup);
+}
+
 async function intentarLogin() {
   const pwdInput = document.getElementById('loginPwd');
+  const pwdConfirm = document.getElementById('loginPwdConfirm');
   const btnText  = document.getElementById('btnLoginText');
   const btnLoader= document.getElementById('btnLoginLoader');
   const btn      = document.getElementById('btnLogin');
-  if (!pwdInput) return;
+  if (!pwdInput || !btn || !btnText || !btnLoader) return;
 
-  // Verificar bloqueo
-  const intentos = getIntentos();
-  if (intentos.blockedUntil > Date.now()) {
-    const mins = Math.ceil((intentos.blockedUntil - Date.now()) / 60000);
-    mostrarAlerta(`Panel bloqueado. Intentá de nuevo en ${mins} minuto${mins !== 1 ? 's' : ''}.`);
-    return;
+  const isSetup = !existePassword();
+
+  if (!isSetup) {
+    const intentos = getIntentos();
+    if (intentos.blockedUntil > Date.now()) {
+      const mins = Math.ceil((intentos.blockedUntil - Date.now()) / 60000);
+      mostrarAlerta(`Panel bloqueado. Intentá de nuevo en ${mins} minuto${mins !== 1 ? 's' : ''}.`);
+      return;
+    }
   }
 
-  const pwd = pwdInput.value;
+  const pwd = pwdInput.value.trim();
   if (!pwd) {
-    mostrarAlerta('Ingresá tu contraseña.');
+    mostrarAlerta(isSetup ? 'Definí una contraseña.' : 'Ingresá tu contraseña.');
     return;
   }
 
-  // Loading state
+  if (isSetup) {
+    const confirm = pwdConfirm?.value.trim() || '';
+    if (pwd.length < 8) {
+      mostrarAlerta('La contraseña debe tener al menos 8 caracteres.');
+      return;
+    }
+    if (pwd !== confirm) {
+      mostrarAlerta('Las contraseñas no coinciden.');
+      return;
+    }
+  }
+
   btn.disabled = true;
   btnText.classList.add('hidden');
   btnLoader.classList.remove('hidden');
   ocultarAlerta();
 
-  // Pequeña pausa para no revelar velocidad del hash (previene timing attacks)
-  await new Promise(r => setTimeout(r, 600 + Math.random() * 400));
+  await new Promise(r => setTimeout(r, 400 + Math.random() * 250));
 
-  const ok = await verificarPassword(pwd);
+  if (isSetup) {
+    await guardarPasswordNueva(pwd);
+    resetIntentos();
+    crearToken();
+    mostrarAlerta('Acceso admin creado correctamente.', 'success');
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 600);
+  } else {
+    const ok = await verificarPassword(pwd);
+    if (ok) {
+      resetIntentos();
+      crearToken();
+      mostrarAlerta('Ingreso correcto.', 'success');
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 600);
+    } else {
+      const intentos = getIntentos();
+      const nuevo = {
+        count: intentos.count + 1,
+        blockedUntil: intentos.count + 1 >= MAX_INTENTOS ? Date.now() + BLOQUEO_MS : 0
+      };
+      setIntentos(nuevo);
+      actualizarContador();
+      if (nuevo.blockedUntil > 0) {
+        mostrarAlerta('Demasiados intentos. Panel bloqueado por 15 minutos.');
+      } else {
+        mostrarAlerta(`Contraseña incorrecta. Intentos restantes: ${MAX_INTENTOS - nuevo.count}`);
+      }
+      pwdInput.value = '';
+      pwdInput.focus();
+    }
+  }
 
   btn.disabled = false;
   btnText.classList.remove('hidden');
   btnLoader.classList.add('hidden');
-
-  if (ok) {
-    resetIntentos();
-    crearToken();
-    mostrarAlerta('¡Bienvenida/o!', 'success');
-    setTimeout(() => { window.location.href = 'dashboard.html'; }, 600);
-  } else {
-    const nuevo = {
-      count: intentos.count + 1,
-      blockedUntil: intentos.count + 1 >= MAX_INTENTOS ? Date.now() + BLOQUEO_MS : 0
-    };
-    setIntentos(nuevo);
-    actualizarContador();
-    if (nuevo.blockedUntil > 0) {
-      mostrarAlerta(`Demasiados intentos. Panel bloqueado por 15 minutos.`);
-    } else {
-      mostrarAlerta(`Contraseña incorrecta. Intentos restantes: ${MAX_INTENTOS - nuevo.count}`);
-    }
-    pwdInput.value = '';
-    pwdInput.focus();
-  }
 }
 
-// INIT LOGIN PAGE
 document.addEventListener('DOMContentLoaded', () => {
-  // Si ya está autenticado, redirigir directo
-  if (estaAutenticado()) {
+  if (estaAutenticado() && existePassword()) {
     window.location.href = 'dashboard.html';
     return;
   }
 
+  configurarVista();
   actualizarContador();
 
-  const btn     = document.getElementById('btnLogin');
-  const pwdInput= document.getElementById('loginPwd');
-  const toggle  = document.getElementById('togglePwd');
+  const btn = document.getElementById('btnLogin');
+  const pwdInput = document.getElementById('loginPwd');
+  const pwdConfirm = document.getElementById('loginPwdConfirm');
+  const toggle = document.getElementById('togglePwd');
+  const toggleConfirm = document.getElementById('togglePwdConfirm');
 
-  if (btn)      btn.addEventListener('click', intentarLogin);
+  if (btn) btn.addEventListener('click', intentarLogin);
   if (pwdInput) pwdInput.addEventListener('keydown', e => { if (e.key === 'Enter') intentarLogin(); });
-  if (toggle) {
+  if (pwdConfirm) pwdConfirm.addEventListener('keydown', e => { if (e.key === 'Enter') intentarLogin(); });
+  if (toggle && pwdInput) {
     toggle.addEventListener('click', () => {
-      const tipo = pwdInput.type === 'password' ? 'text' : 'password';
-      pwdInput.type = tipo;
+      pwdInput.type = pwdInput.type === 'password' ? 'text' : 'password';
+    });
+  }
+  if (toggleConfirm && pwdConfirm) {
+    toggleConfirm.addEventListener('click', () => {
+      pwdConfirm.type = pwdConfirm.type === 'password' ? 'text' : 'password';
     });
   }
 });
 
-// Exportar para uso en dashboard
-window.HEAuth = { estaAutenticado, cerrarSesion, sha256, getStoredHash, HASH_KEY };
+window.HEAuth = { estaAutenticado, cerrarSesion, sha256, getStoredHash, guardarPasswordNueva, HASH_KEY, existePassword };

@@ -117,9 +117,9 @@ const PAQUETES_INICIALES = [
 ];
 
 const CONFIG_INICIAL = {
-  whatsapp: "5491100000000",
-  email: "hola@escapaditas.com",
-  telefono: "+54 11 0000-0000",
+  whatsapp: "",
+  email: "",
+  telefono: "",
   instagram: "https://www.instagram.com/hola.escapaditas/",
   mensajeWa: "Hola! Vi su web y quiero consultar sobre paquetes de viaje 🌍"
 };
